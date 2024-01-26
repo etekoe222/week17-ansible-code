@@ -1,0 +1,73 @@
+---
+-  hosts: web
+   become: yes
+   gather_facts: 0
+   tasks:
+      
+      - name: update the system
+        apt:
+          name: apache2
+          update_cache: yes
+        tags:
+          - update  
+      - name: install the httpd deamon
+        apt:
+          name: apache2
+          state: present
+        tags:
+          - install  
+      - name: start httpd
+        systemd:
+          name: apache2
+          state: started
+          enabled: yes
+        tags:
+          - daemon   
+      - name: copy the index file to the target
+        copy:
+          src: index2.html
+          dest: /var/www/html/index2.html
+        tags:
+          - file_copy 
+        notify: Restart Apache  
+
+  
+   handlers:
+      - name: Restart Apache 
+        systemd: 
+          name: apache2
+          state: restarted     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#yum update -y
+#yum install httpd -y
+#systemctl start httpd
+#systemctl enable httpd
+#cd /var/www/html
+#touch index.html
+#vi

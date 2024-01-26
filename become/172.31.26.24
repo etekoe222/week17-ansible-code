@@ -1,0 +1,1 @@
+{"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3"}, "changed": false, "msg": "useradd: Permission denied.\nuseradd: cannot lock /etc/passwd; try again later.\n", "name": "john", "rc": 1, "warnings": ["The input password appears not to have been hashed. The 'password' argument must be encrypted for this module to work properly."]}
